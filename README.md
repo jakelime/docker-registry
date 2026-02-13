@@ -10,7 +10,10 @@ This example will override the original nginx conf with one supporting HTTPS. Yo
 Generating a self signed certificate:
 
 ```bash
-openssl req -newkey rsa:2048 -nodes -keyout nginx/privkey.pem -x509 -days 3650 -out nginx/fullchain.pem
+src_registryui='src-registryui'
+certs="$src_registryui/certs/"
+mkdir -p $certs
+openssl req -newkey rsa:2048 -nodes -keyout "$certs/privkey.pem" -x509 -days 3650 -out "$certs/fullchain.pem"
 ```
 
 The UI will be available here : `https://localhost`
