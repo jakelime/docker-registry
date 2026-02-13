@@ -5,12 +5,11 @@ services:
       context: ./src-registry
       args:
         url_docker: ${url_docker_index:-docker.io}
-        PERSISTANCE_STORAGE: /datashare/docker-registry
     environment:
       - REGISTRY_HTTP_SECRET=${DOCKER_REGISTRY_HTTP_SECRET:-6e271f338b1d9b3bcd58e934463304596a6b6cb5af8ed9b30c1174e0a3a0185c}
       - REGISTRY_STORAGE_DELETE_ENABLED=true
     volumes:
-      - datashare:/datashare
+      - data_dkregistry:/var/lib/registry
     networks:
       - appnet
 
@@ -41,9 +40,8 @@ services:
       - appnet
 
 volumes:
-  datashare:
-
+  data_dkregistry:
+    name: data_dkregistry
 
 networks:
   appnet:
-  datashare:
